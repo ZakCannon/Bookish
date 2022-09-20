@@ -22,7 +22,8 @@
 
 <div>
 
-  <%= link_to "Edit this book", edit_book_path(@book) %> |
+  <%= link_to "Edit this book's info", edit_book_path(@book) %> |
+  <%= link_to "Edit copy info of this book", "#{@book_id}/copy_edit" %> |
   <%= link_to "Back to books", books_path %>
 
   <%= button_to "Destroy this book", @book, method: :delete %>

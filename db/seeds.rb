@@ -9,7 +9,7 @@
 books = Book.find_or_create_by(title: "The Picture of Dorian Gray", author: "Oscar Wilde", isbn: "9780141439570")
 books = Book.find_or_create_by(title: "The Bell Jar", author: "Sylvia Plath", isbn: "9780571226160")
 books = Book.find_or_create_by(title: "Animal Farm", author: "George Orwell", isbn: "9780452284241")
-books = Book.find_or_create_by(title: "The Great Gatsby", author: "F Scott Fitzgerald", isbn: "9780684801520")
+books = Book.find_or_create_by(title: "The Great Gatsby", author: "F. Scott Fitzgerald", isbn: "9780684801520")
 books = Book.find_or_create_by(title: "The Metamorphosis", author: "Franz Kafka", isbn: "9780141023458")
 
 copies = Copy.find_or_create_by(book_id: 1)

@@ -59,6 +59,11 @@ class BooksController < ApplicationController
     end
   end
 
+  def copy_edit
+    @book = Book.find(params[:id])
+    @copies = @book.copies
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
@@ -67,6 +72,6 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.fetch(:book, {})
+      params.fetch(:book, {}).permit(:title, :author, :isbn)
     end
 end

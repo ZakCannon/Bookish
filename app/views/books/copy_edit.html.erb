@@ -1,0 +1,26 @@
+<h1>Editing copies</h1>
+
+<h2>Current copy information: </h2>
+
+<table>
+  <tr>
+    <th>Copy number</th>
+    <th>Owner</th>
+    <th>Due back</th>
+  </tr>
+  <%(0..@copies.size).each do |i|%>
+    <tr>
+      <%next if i == 0 %>
+      <td><%= i%></td>
+      <%begin %>
+        <td><%=@copies[i].borrower %></td>
+        <td><%=@copies[i].due_date %></td>
+      <%rescue NoMethodError %>
+        <td>Not taken out</td>
+        <td></td>
+      <%end %>
+    </tr>
+  <% end %>
+</table>
+
+<h2>: </h2>
