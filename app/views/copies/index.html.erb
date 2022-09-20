@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Copies</h1>
+
+<div id="copies">
+  <% @copies.each do |copy| %>
+    <%= render copy %>
+    <p>
+
+      <%= link_to "Show copy of #{copy.book.title}", copy %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New copy", new_copy_path %>

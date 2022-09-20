@@ -8,17 +8,19 @@
 <p>Record created at: <%=@book.created_at %></p>
 <p>Record last updated at: <%=@book.updated_at %></p>
 
-<p>Copy information</p>
+<h2>Copy information</h2>
 
 <%(0..@copies.size).each do |i|%>
-  <%begin %>
     <%next if i == 0 %>
-    <%="Copy #{i} owned by #{@copies[i].borrower}" %>
+    <%if @copies[i] == nil || @copies[i].borrower.length == 0%>
+      <%="Copy #{i} is available" %>
+      <%else %>
+      <%="Copy #{i} borrowed by #{@copies[i].borrower}" %>
+      <%end %>
     <br>
-  <%rescue NoMethodError%>
-    <%="Copy #{i} has not been taken out" %>
-  <%end %>
 <% end %>
+
+<h2>Actions</h2>
 
 <div>
 

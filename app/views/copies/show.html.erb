@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @copy %>
+
+<p>This is a copy of <%=@copy.book.title %></p>
+<%if @copy.borrower == nil || @copy.borrower.length == 0 %>
+  <p>Not currently taken out</p>
+<%else %>
+  <p>Currently borrowed by <%= @copy.borrower %></p>
+  <p>Due back by <%= @copy.due_date %></p>
+<%end %>
+
+<div>
+  <%= link_to "Edit this copy", edit_copy_path(@copy) %> |
+  <%= link_to "Back to book info", @copy.book %> |
+  <%= link_to "Back to book list", books_path %>
+
+  <%= button_to "Destroy this copy", @copy, method: :delete %>
+</div>

@@ -1,4 +1,6 @@
-<h1>Editing copies</h1>
+<p style="color: green"><%= notice %></p>
+
+<h1>Editing copies of <%=@book.title %></h1>
 
 <h2>Current copy information: </h2>
 
@@ -11,16 +13,24 @@
   <%(0..@copies.size).each do |i|%>
     <tr>
       <%next if i == 0 %>
-      <td><%= i%></td>
-      <%begin %>
+      <%if @copies[i] == nil || @copies[i].borrower.length == 0%>
+        <td>Not taken out</td>
+        <td>Edit <%= link_to "here", @copies[i]%></td>
+      <%else %>
+        <td><%= link_to i, @copies[i]%></td>
         <td><%=@copies[i].borrower %></td>
         <td><%=@copies[i].due_date %></td>
-      <%rescue NoMethodError %>
-        <td>Not taken out</td>
-        <td></td>
       <%end %>
     </tr>
-  <% end %>
+  <%end %>
 </table>
 
-<h2>: </h2>
+<p>Select a copy to edit that copy</p>
+
+<p>
+  <%= link_to "Copy creation", new_copy_path %>|
+  <%= link_to "Return to book view", @book %>|
+  <%= link_to "Book list", books_path %>
+</p>
+
+
