@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+<h1><%=@book.title %></h1>
+
+<%= render @book %>
+
+<p>Author: <%=@book.author %></p>
+<p>ISBN: <%=@book.isbn %></p>
+<p>Record created at: <%=@book.created_at %></p>
+<p>Record last updated at: <%=@book.updated_at %></p>
+
+<p>Copy information</p>
+
+<%(0..@copies.size).each do |i|%>
+  <%begin %>
+    <%next if i == 0 %>
+    <%="Copy #{i} owned by #{@copies[i].borrower}" %>
+    <br>
+  <%rescue NoMethodError%>
+    <%="Copy #{i} has not been taken out" %>
+  <%end %>
+<% end %>
+
+<div>
+
+  <%= link_to "Edit this book", edit_book_path(@book) %> |
+  <%= link_to "Back to books", books_path %>
+
+  <%= button_to "Destroy this book", @book, method: :delete %>
+</div>
