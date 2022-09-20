@@ -12,11 +12,11 @@ books = Book.find_or_create_by(title: "Animal Farm", author: "George Orwell", is
 books = Book.find_or_create_by(title: "The Great Gatsby", author: "F. Scott Fitzgerald", isbn: "9780684801520")
 books = Book.find_or_create_by(title: "The Metamorphosis", author: "Franz Kafka", isbn: "9780141023458")
 
-copies = Copy.find_or_create_by(book_id: 1)
-copies = Copy.find_or_create_by(book_id: 2)
-copies = Copy.find_or_create_by(book_id: 3)
-copies = Copy.find_or_create_by(book_id: 4)
-copies = Copy.find_or_create_by(book_id: 5)
+copies = Copy.find_or_create_by(book_id: 1, borrower: "", due_date: "")
+copies = Copy.find_or_create_by(book_id: 2, borrower: "", due_date: "")
+copies = Copy.find_or_create_by(book_id: 3, borrower: "", due_date: "")
+copies = Copy.find_or_create_by(book_id: 4, borrower: "", due_date: "")
+copies = Copy.find_or_create_by(book_id: 5, borrower: "", due_date: "")
 
 copies = Copy.find_or_create_by(book_id: 1, borrower: "Zak", due_date: "26/09/2022")
 copies = Copy.find_or_create_by(book_id: 1, borrower: "Aga", due_date: "23/09/2022")

@@ -10,12 +10,11 @@
 
 <h2>Copy information</h2>
 
-<%(0..@copies.size).each do |i|%>
-    <%next if i == 0 %>
+<%(0..(@copies.size-1)).each do |i|%>
     <%if @copies[i] == nil || @copies[i].borrower.length == 0%>
-      <%="Copy #{i} is available" %>
+      <%="Copy #{i+1} is available" %>
       <%else %>
-      <%="Copy #{i} borrowed by #{@copies[i].borrower}" %>
+      <%="Copy #{i+1} borrowed by #{@copies[i].borrower}" %>
       <%end %>
     <br>
 <% end %>

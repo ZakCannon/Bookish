@@ -10,15 +10,22 @@
     <th>Owner</th>
     <th>Due back</th>
   </tr>
-  <%(0..@copies.size).each do |i|%>
+  <%puts @copies %>
+  <%(0..(@copies.size-1)).each do |i|%>
     <tr>
-      <%next if i == 0 %>
-      <%if @copies[i] == nil || @copies[i].borrower.length == 0%>
+      <%puts i %>
+      <%if @copies[i] == nil || @copies[i].borrower == nil%>
         <td>Not taken out</td>
-        <td>Edit <%= link_to "here", @copies[i]%></td>
+        <td>Edit <%= link_to "here", "/copies/#{@copies[i].id}/edit"%></td>
       <%else %>
-        <td><%= link_to i, @copies[i]%></td>
-        <td><%=@copies[i].borrower %></td>
+        <td><%= link_to i+1, @copies[i]%></td>
+        <td>
+          <%if @copies[i].borrower.length==0 %>
+            <%="Available" %>
+          <%else %>
+            <%=@copies[i].borrower %>
+          <%end %>
+        </td>
         <td><%=@copies[i].due_date %></td>
       <%end %>
     </tr>
