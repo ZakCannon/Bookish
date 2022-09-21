@@ -2,15 +2,25 @@
 
 <p style="color: green"><%= notice %></p>
 
-<h1>Books</h1>
+<h1 class="title">Books</h1>
 
 <div id="books">
   <% @books_sorted.each do |book| %>
     <%= render book %>
-    <p>
-      <%= link_to book.title, book %>
-    </p>
+    <div class="columns">
+      <div class="column is-three-quarters">
+        <div class="box">
+          <%= link_to book.title, book %>
+        </div>
+    </div>
+    </div>
+
   <% end %>
 </div>
 
-<%= link_to "New book", new_book_path %>
+<br>
+
+<button class="button is-primary is-light">
+  <%= link_to "New book", new_book_path %>
+</button>
+

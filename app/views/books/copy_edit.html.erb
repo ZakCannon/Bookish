@@ -2,9 +2,8 @@
 
 <p style="color: green"><%= notice %></p>
 
-<h1>Editing copies of <%=@book.title %></h1>
-
-<h2>Current copy information: </h2>
+<h2 class="title is-3">Editing copies of <%=@book.title %></h2>
+<h2 class="subtitle">Current copy information: </h2>
 
 <table class="table">
   <tr>
@@ -14,30 +13,28 @@
   </tr>
   <%(0..(@copies.size-1)).each do |i|%>
     <tr>
-      <%if @copies[i] == nil || @copies[i].borrower == nil%>
-        <td>Not taken out</td>
-        <td>Edit <%= link_to "here", "/copies/#{@copies[i].id}/edit"%></td>
-      <%else %>
-        <td><%= link_to i+1, @copies[i]%></td>
-        <td>
-          <%if @copies[i].borrower.length==0 %>
-            <%="Available" %>
-          <%else %>
-            <%=@copies[i].borrower %>
-          <%end %>
-        </td>
-        <td><%=@copies[i].due_date %></td>
-      <%end %>
+      <td>
+        <button class="button is-small"><%= link_to i+1, @copies[i]%></button>
+      </td>
+      <td>
+        <%if @copies[i].borrower.length==0 %>
+          <%="Available" %>
+        <%else %>
+          <%=@copies[i].borrower %>
+        <%end %>
+      </td>
+      <td><%=@copies[i].due_date %></td>
     </tr>
   <%end %>
 </table>
 
 <p>Select a copy to edit that copy</p>
+<br>
 
-<p>
-  <%= link_to "Copy creation", new_copy_path %>|
-  <%= link_to "Return to book view", @book %>|
-  <%= link_to "Book list", books_path %>
-</p>
+<h2 class="subtitle">Actions</h2>
+
+<button class="button"><%= link_to "Copy creation", new_copy_path %></button>
+<button class="button"><%= link_to "Return to book view", @book %></button>
+<button class="button"><%= link_to "Back to books", books_path %></button>
 
 

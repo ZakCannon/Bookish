@@ -12,12 +12,16 @@
   <% end %>
 
   <div class="actions">
-    <%= form.label :borrower %>
-    <%= form.text_field :borrower, placeholder: "Eg. F. Scott Fitzgerald, leave blank if not taken out" %>
-    <br>
-    <%= form.label :due_date %>
-    <%= form.text_field :due_date, placeholder: "Eg. 26/09/2022, leave blank if not taken out" %>
-    <br>
-    <%= form.submit %>
+    <div class="field">
+      <%= form.label :borrower, class:"label" %>
+      <%= form.text_field :borrower, placeholder: "Eg. F. Scott Fitzgerald, leave blank if not taken out", class:"control" %>
+    </div>
+    <div class="field">
+      <%= form.label :due_date, class:"label" %>
+      <%= form.text_field :due_date, placeholder: "Eg. 26/09/2022, leave blank if not taken out",class:"control" %>
+    </div>
+    <div class="control">
+      <%= form.submit class:"button is-link"%>
+    </div>
   </div>
 <% end %>

@@ -4,18 +4,23 @@
 
 <%= render @copy %>
 
-<p>This is a copy of <%=@copy.book.title %></p>
-<%if @copy.borrower == nil || @copy.borrower.length == 0 %>
-  <p>Not currently taken out</p>
-<%else %>
-  <p>Currently borrowed by <%= @copy.borrower %></p>
-  <p>Due back by <%= @copy.due_date %></p>
-<%end %>
+<div class="box">
+  <h2 class="subtitle">Displaying copy info</h2>
 
-<div>
-  <%= link_to "Edit this copy", edit_copy_path(@copy) %> |
-  <%= link_to "Back to book info", @copy.book %> |
-  <%= link_to "Back to book list", books_path %>
-
-  <%= button_to "Destroy this copy", @copy, method: :delete %>
+  <p>This is a copy of <%=@copy.book.title %></p>
+  <%if @copy.borrower == nil || @copy.borrower.length == 0 %>
+    <p>Not currently taken out</p>
+  <%else %>
+    <p>Currently borrowed by <%= @copy.borrower %></p>
+    <p>Due back by <%= @copy.due_date %></p>
+  <%end %>
 </div>
+<br>
+
+
+<h2 class="subtitle">Actions</h2>
+
+<button class="button"><%= link_to "Edit this copy", edit_copy_path(@copy) %></button>
+<button class="button"><%= link_to "Back to book info", @copy.book %></button>
+<button class="button"><%= link_to "Back to books", books_path %></button>
+<%= button_to "Destroy this copy", @copy, method: :delete, class:"button is-danger" %>
