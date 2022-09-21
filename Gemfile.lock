@@ -236,7 +236,7 @@ DEPENDENCIES
   bulma-rails (~> 0.9.3)
   capybara
   debug
-  devise
+  devise (~> 4.8, >= 4.8.1)
   importmap-rails
   jbuilder
   puma (~> 5.0)

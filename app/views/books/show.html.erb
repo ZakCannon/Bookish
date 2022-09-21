@@ -1,4 +1,3 @@
-<p style="color: green"><%= notice %></p>
 <h1 class="title"><%=@book.title %></h1>
 
 <%= render @book %>
@@ -38,6 +37,6 @@
 <h2 class="subtitle">Actions</h2>
 
 <button class="button"><%= link_to "Edit this book's info", edit_book_path(@book) %></button>
-<button class="button"><%= link_to "Edit copy info of this book", "#{@book_id}/copy_edit" %></button>
+<button class="button"><%= link_to "View detailed copy info of this book", "#{@book_id}/copy_edit" %></button>
 <button class="button"><%= link_to "Back to books", books_path %></button>
 <%= button_to "Destroy this book", @book, method: :delete, class:"button is-danger" %>

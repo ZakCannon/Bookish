@@ -34,10 +34,6 @@
         </a>
       </div>
 
-      <%puts "is user signed in? #{user_signed_in?}" %>
-      <%puts "new registration path is #{new_user_registration_path}" %>
-      <%puts "new login path is #{new_user_session_path}" %>
-
 
       <div class="navbar-end">
         <div class="navbar-item">
@@ -56,8 +52,8 @@
   </nav>
 
   <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <p class="notice" style="color: green"><%= notice %></p>
+  <p class="alert" style="color: red"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
