@@ -1,21 +1,47 @@
 <h1 class="title"><%=@book.title %></h1>
+<h1 class="subtitle"><%=@book.author %></h1>
 
 <div class="box">
   <h2 class="subtitle">Book information</h2>
-
-  <div class="content">
-    <dl>
-      <dt>Author</dt>
-      <dd><%=@book.author %></dd>
-      <dt>ISBN</dt>
-      <dd><%=@book.isbn %></dd>
-      <dt>Record created at:</dt>
-      <dd><%=@book.created_at %></dd>
-      <dt>Record last updated at:</dt>
-      <dd><%=@book.updated_at %></dd>
-    </dl>
+  <div class="columns">
+    <div class="column is-three-quarters">
+      <div class="box">
+        <%=@book.genre %>
+        <%if @book.genre == nil %>
+          <div class="block">
+            No book genre added yet
+          </div>
+          <button class="button"><%= link_to "Fix me!", edit_book_path(@book) %></button>
+        <%end %>
+      </div>
+      <div class="box">
+        <%=@book.description %>
+        <%if @book.description == nil %>
+          <div class="block">
+            No book description added yet
+          </div>
+          <button class="button"><%= link_to "Fix me!", edit_book_path(@book) %></button>
+        <%end %>
+      </div>
+    </div>
+    <div class="column">
+      <div class="content">
+        <dl>
+          <dt>ISBN</dt>
+          <dd><%=@book.isbn %></dd>
+          <dt>Record created at:</dt>
+          <dd><%=@book.created_at %></dd>
+          <dt>Record last updated at:</dt>
+          <dd><%=@book.updated_at %></dd>
+        </dl>
+      </div>
+    </div>
   </div>
+
+
 </div>
+
+
 
 <div class="box">
   <h2 class="subtitle">Copy information</h2>
