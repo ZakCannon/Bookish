@@ -65,6 +65,17 @@ class BooksController < ApplicationController
     @copies = @book.copies
   end
 
+  def search
+  end
+
+  def search_result
+    @search_title = params[:title]
+    @search_author = params[:author]
+    results_title = Book.where("lower(title) LIKE ?", "%#{@search_title.downcase}%")
+    results_author = Book.where("lower(author) LIKE ?", "%#{@search_author.downcase}%")
+    @results = results_title & results_author
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book

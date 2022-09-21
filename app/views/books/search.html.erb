@@ -1,0 +1,18 @@
+
+
+<div class="content">
+  <h1 class="subtitle">Search by title or author</h1>
+  <%= form_with url: "/search/result", method: :get do |form|%>
+    <div class="control">
+      <%= form.label :title %>
+      <%= form.search_field :title, placeholder: "Eg. The Bell Jar", class:"field has-addons mt-3"%>
+    </div>
+    <div class="control mt-3">
+      <%= form.label :author %>
+      <%= form.search_field :author, placeholder: "Eg. Sylvia Plath", class:"field has-addons mt-3"%>
+    </div>
+    <div class="control mt-3">
+      <%= form.submit "Search", class:"button is-info"%>
+    </div>
+  <% end %>
+</div>

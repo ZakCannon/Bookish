@@ -1,0 +1,15 @@
+<div class="content">
+  <h1 class="subtitle">Results</h1>
+  <div id="books">
+    <% @results.each do |book| %>
+      <%= render book %>
+    <% end %>
+
+    <%if @results.length == 0 %>
+      No results found
+    <%end %>
+  </div>
+</div>
+
+<button class="button"><%= link_to "Search again", '/search' %></button>
+<button class="button"><%= link_to "Book list", books_path %></button>

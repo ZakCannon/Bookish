@@ -29,14 +29,38 @@
           Home
         </a>
 
+        <a class="navbar-item" href="/search">
+          Search
+        </a>
+
         <a class="navbar-item" href="https://github.com/ZakCannon/Bookish">
           Documentation
         </a>
-      </div>
 
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More
+          </a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item">
+              Summary stats
+            </a>
+<!--            <a class="navbar-item">-->
+<!--              Contact-->
+<!--            </a>-->
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="https://github.com/ZakCannon/Bookish/issues">
+              Report an issue
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
+
           <div class="buttons">
             <% if user_signed_in? %>
               <%= link_to current_user.email, edit_user_registration_path, class:"button is-primary" %>
@@ -51,9 +75,20 @@
     </div>
   </nav>
 
-  <body>
+
   <p class="notice" style="color: green"><%= notice %></p>
   <p class="alert" style="color: red"><%= alert %></p>
+
+  <div class="block ml-4">
     <%= yield %>
-  </body>
+  </div>
+
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Bookish</strong> by Zak Cannon. Source available from top bar.
+      </p>
+    </div>
+  </footer>
 </html>
