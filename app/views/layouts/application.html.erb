@@ -3,8 +3,6 @@
   <head>
     <title>Bookish</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,7 +10,54 @@
     <%= javascript_importmap_tags %>
   </head>
 
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/books">
+        <img src="https://www.cambridgeblog.org/wp-content/uploads/2018/06/antique-books-615x290.png" width="112" height="40">
+      </a>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/books">
+          Home
+        </a>
+
+        <a class="navbar-item" href="https://github.com/ZakCannon/Bookish">
+          Documentation
+        </a>
+      </div>
+
+      <%puts "is user signed in? #{user_signed_in?}" %>
+      <%puts "new registration path is #{new_user_registration_path}" %>
+      <%puts "new login path is #{new_user_session_path}" %>
+
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <% if user_signed_in? %>
+              <%= link_to current_user.email, edit_user_registration_path, class:"button is-primary" %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"button is-light" %>
+            <% else %>
+              <%= link_to "Log in", new_user_session_path, class:"button is-primary" %>
+              <%= link_to "Register", new_user_registration_path, class:"button is-light" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
   <body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
