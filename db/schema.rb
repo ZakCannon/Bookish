@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_22_101622) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_22_142940) do
   create_table "books", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,6 +45,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_101622) do
     t.datetime "updated_at", null: false
     t.datetime "published_at"
     t.integer "book_id"
+    t.integer "user_id"
+    t.string "headline"
     t.index ["book_id"], name: "index_reviews_on_book_id"
   end
 

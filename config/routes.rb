@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+
+
+  post 'books/:id', to: 'books#show'
+  patch 'books/:id/copies', to: 'copies#update'
+
   get 'search', to: 'books#search'
   get 'search/result', to: 'books#search_result'
 

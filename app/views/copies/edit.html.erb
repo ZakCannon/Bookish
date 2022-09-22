@@ -1,8 +1,8 @@
 <h1>Editing copy</h1>
 
-<%= render "form", copy: @copy %>
+<%= render "copies/form", copy: @copy %>
 
 <br>
 
-<button class="button"><%= link_to "Return to this copy's info", edit_book_copy %></button>
-<button class="button"><%= link_to "Back to books", root %></button>
+<button class="button"><%= link_to "Return to copy info", book_copies_path(@book) %></button>
+<button class="button"><%= link_to "Back to books", root_path %></button>

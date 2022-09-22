@@ -6,7 +6,7 @@
   <div class="columns">
     <div class="column is-three-quarters">
       <div class="box">
-        <%=@book.genre %>
+        Genre: <%=@book.genre %>
         <%if @book.genre == nil %>
           <div class="block">
             No book genre added yet
@@ -35,32 +35,47 @@
           <dd><%=@book.updated_at %></dd>
         </dl>
       </div>
+      <div class="box">
+        <h2 class="subtitle">Actions</h2>
+
+        <button class="button"><%= link_to "Edit this book's info", edit_book_url %></button>
+        <button class="button"><%= link_to "Back to books", root_url %></button>
+        <%= button_to "Destroy this book", @book, method: :delete, class:"button is-danger mt-3" %>
+      </div>
+
     </div>
   </div>
 </div>
 
 <div class="box">
   <h2 class="subtitle">Copy information</h2>
-  <%(0..(@copies.size-1)).each do |i|%>
-    <li>
-      <%if @copies[i] == nil || @copies[i].borrower.length == 0%>
-        <%="Copy #{i+1} is available" %>
-      <%else %>
-        <%="Copy #{i+1} borrowed by #{@copies[i].borrower}" %>
-      <%end %>
-    </li>
-  <% end %>
+  <div class="block">
+    There are <%=@count_available %> available copies
+  </div>
+  <button class="button"><%= link_to "View detailed copy info of this book", book_copies_url(@book) %></button>
 </div>
 
-<!--<div class="box">-->
-<!--  <h2 class="subtitle">Reviews</h2>-->
-<!--  Placeholder for written reviews-->
-  <%#=link_to "Leave a review", new_book_review_path %>
-<!--</div>-->
+<div class="box">
+  <div class="block">
+    <h2 class="subtitle">User Reviews</h2>
+    <%=link_to "Leave a review", new_book_review_url(@book) %>
+  </div>
+  <div class="block">
+    <%(0..(@reviews.size-1)).each do |i|%>
+      <div class="box">
+        <h2 class="title is-4"><%=@reviews[i].name %></h2>
+        <h2 class="title is-5"><%=@reviews[i].headline %></h2>
+        <div class="block">
+          <%=@reviews[i].content %>
+        </div>
+        <div class="block">
+          - left on <%=@reviews[i].date %>
+        </div>
+        <div class="block">
+          <%= button_to "Delete this review", book_review_path(@book), method: :delete, class:"button is-danger is-small" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<h2 class="subtitle">Actions</h2>
-
-<button class="button"><%= link_to "Edit this book's info", edit_book_url %></button>
-<button class="button"><%= link_to "View detailed copy info of this book", book_copies_url(@book) %></button>
-<button class="button"><%= link_to "Back to books", root_url %></button>
-<%= button_to "Destroy this book", @book, method: :delete, class:"button is-danger mt-3" %>

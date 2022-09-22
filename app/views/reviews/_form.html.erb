@@ -1,21 +1,23 @@
-<%= form_with(model: review) do |form| %>
-  <% if review.errors.any? %>
+<%= form_with(model: [@book, @review], :url => book_reviews_path(@book.id)) do |form| %>
+  <% if @review.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
 
       <ul>
-        <% review.errors.each do |error| %>
+        <% @review.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div><div class="actions">
+  <div class="actions">
     <%= form.hidden_field :name, value: "#{current_user.first_name} #{current_user.surname}" %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :date, value: Date.today() %>
     <div class="field">
-      <%= form.label :date, class:"label" %>
-      <%= form.text_field :date, class:"control",type:"date",min:"#{Date.today()}" %>
+      <%= form.label :headline, class:"label" %>
+      <%= form.text_area :headline, placeholder: "Leave your desired headline here (or leave blank)", class:"control",class:"textarea" %>
     </div>
     <div class="field">
       <%= form.label :content, class:"label" %>
@@ -24,6 +26,5 @@
     <div class="control">
       <%= form.submit class:"button is-link"%>
     </div>
-  </div>
   </div>
 <% end %>

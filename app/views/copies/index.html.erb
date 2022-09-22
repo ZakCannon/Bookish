@@ -1,39 +1,49 @@
 <h2 class="title is-3">Editing copies of <%=@book.title %></h2>
 <h2 class="subtitle">Current copy information: </h2>
 
-<%@copies.size %>
+<%shown_available = false %>
 
 <table class="table">
   <tr>
-    <th>Copy number</th>
+    <th>Available actions</th>
     <th>Owner</th>
     <th>Due back</th>
   </tr>
   <%(0..(@copies.size-1)).each do |i|%>
-    <tr>
-      <td>
-<!--        <button class="button is-small"><%#= link_to i+1, @copies[i]%></button>-->
-        <button class="button is-small">Placeholder button</button>
-
-      </td>
-      <td>
-        <%if @copies[i].borrower.length==0 %>
-          <%="Available" %>
+    <%if shown_available == false%>
+      <%if @count_available != "no"%>
+      <tr>
+        <td>
+        <button class="button"><%= link_to "Take out", edit_book_copy_path(@book, @copies[i])%></button>
+        <%shown_available = true %>
+        <td></td>
+        <td></td>
+        </td>
+      </tr>
         <%else %>
-          <%=@copies[i].borrower %>
-        <%end %>
-      </td>
-      <td><%=@copies[i].due_date %></td>
-    </tr>
+      <tr>
+        <td>No Copies of this book available</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <%end %>
+    <%else %>
+      <%unless @copies[i].borrower.length==0%>
+        <tr>
+          <td><button class="button is-small"><%= link_to "Return, or renew", edit_book_copy_path(@book, @copies[i])%></button></td>
+          <td><%=@copies[i].borrower%></td>
+          <td><%=@copies[i].due_date %></td>
+        </tr>
+      <%end %>
+    <%end %>
   <%end %>
+  <tr>
+    <td>
+      <button class="button"><%= link_to "Copy creation", new_book_copy_path(@book) %></button>
+    </td>
+  </tr>
 </table>
 
-<p>Select a copy to edit that copy</p>
-<br>
-
-<h2 class="subtitle">Actions</h2>
-
-<button class="button"><%= link_to "Copy creation", new_book_copy_path(@book) %></button>
 <button class="button"><%= link_to "Return to book view", @book %></button>
-<button class="button"><%= link_to "Back to books", books_path %></button>
+<button class="button"><%= link_to "Back to book list", books_path %></button>
 

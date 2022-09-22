@@ -11,7 +11,19 @@ class BooksController < ApplicationController
   # GET /books/1 or /books/1.json
   def show
     @copies = @book.copies
-    @book_id = params[:id]
+    @reviews = @book.reviews
+
+    @count_available = 0
+
+    (0..(@copies.size-1)).each do |i|
+      if @copies[i] == nil || @copies[i].borrower.length == 0
+        @count_available +=1
+      end
+    end
+
+    if @count_available == 0
+      @count_available = "no"
+    end
   end
 
   # GET /books/new
@@ -43,10 +55,8 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to book_url(@book), notice: "Book was successfully updated." }
-        format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +67,6 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
