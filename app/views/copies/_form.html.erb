@@ -1,4 +1,4 @@
-<%= form_with(model: copy) do |form| %>
+<%= form_with(model: [@book, copy], :url => book_copies_path(@book)) do |form| %>
   <% if copy.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(copy.errors.count, "error") %> prohibited this copy from being saved:</h2>
@@ -12,6 +12,7 @@
   <% end %>
 
   <div class="actions">
+    <%= form.hidden_field :book_id%>
     <div class="field">
       <%= form.label :borrower, class:"label" %>
       <%= form.text_field :borrower, placeholder: "Eg. F. Scott Fitzgerald, leave blank if not taken out", class:"control" %>
@@ -24,4 +25,5 @@
       <%= form.submit class:"button is-link"%>
     </div>
   </div>
+  <%= book_copies_path(@book)%>
 <% end %>

@@ -1,0 +1,29 @@
+<%= form_with(model: review) do |form| %>
+  <% if review.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+        <% review.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div><div class="actions">
+    <%= form.hidden_field :name, value: "#{current_user.first_name} #{current_user.surname}" %>
+    <div class="field">
+      <%= form.label :date, class:"label" %>
+      <%= form.text_field :date, class:"control",type:"date",min:"#{Date.today()}" %>
+    </div>
+    <div class="field">
+      <%= form.label :content, class:"label" %>
+      <%= form.text_area :content, placeholder: "Leave your review here", class:"control",class:"textarea" %>
+    </div>
+    <div class="control">
+      <%= form.submit class:"button is-link"%>
+    </div>
+  </div>
+  </div>
+<% end %>

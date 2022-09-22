@@ -1,9 +1,11 @@
 class CopiesController < ApplicationController
+  before_action :get_book
   before_action :set_copy, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[edit update destroy new]
 
   # GET /copies or /copies.json
   def index
-    @copies = Copy.all
+    @copies = @book.copies
   end
 
   # GET /copies/1 or /copies/1.json
@@ -12,7 +14,7 @@ class CopiesController < ApplicationController
 
   # GET /copies/new
   def new
-    @copy = Copy.new
+    @copy = @book.copies.build
   end
 
   # GET /copies/1/edit
@@ -21,11 +23,11 @@ class CopiesController < ApplicationController
 
   # POST /copies or /copies.json
   def create
-    @copy = Copy.new(copy_params)
+    @copy = @book.copies.build(copy_params)
 
     respond_to do |format|
       if @copy.save
-        format.html { redirect_to copy_url(@copy), notice: "Copy was successfully created." }
+        format.html { redirect_to book_copies_path(@book), notice: "Copy was successfully created." }
         format.json { render :show, status: :created, location: @copy }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +40,7 @@ class CopiesController < ApplicationController
   def update
     respond_to do |format|
       if @copy.update(copy_params)
-        format.html { redirect_to copy_url(@copy), notice: "Copy was successfully updated." }
+        format.html { redirect_to book_copy_path(@book), notice: "Copy was successfully updated." }
         format.json { render :show, status: :ok, location: @copy }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +54,24 @@ class CopiesController < ApplicationController
     @copy.destroy
 
     respond_to do |format|
-      format.html { redirect_to copies_url, notice: "Copy was successfully destroyed." }
+      format.html { redirect_to book_copy_path(@book), notice: "Copy was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+  def get_book
+    @book = Book.find(params[:book_id])
+    puts @book.title
+  end
+
     def set_copy
-      @copy = Copy.find(params[:id])
+      @copy = @book.copies.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def copy_params
-      params.fetch(:copy, {}).permit(:borrower, :due_date)
+      params.fetch(:copy, {}).permit(:borrower, :due_date, :book_id)
     end
 end

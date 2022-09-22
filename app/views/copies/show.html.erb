@@ -18,5 +18,5 @@
 
 <button class="button"><%= link_to "Edit this copy", edit_copy_path(@copy) %></button>
 <button class="button"><%= link_to "Back to book info", @copy.book %></button>
-<button class="button"><%= link_to "Back to books", books_path %></button>
+<button class="button"><%= link_to "Back to books", root %></button>
 <%= button_to "Destroy this copy", @copy, method: :delete, class:"button is-danger mt-3" %>

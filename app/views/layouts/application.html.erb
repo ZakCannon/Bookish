@@ -63,7 +63,7 @@
 
           <div class="buttons">
             <% if user_signed_in? %>
-              <%= link_to current_user.email, edit_user_registration_path, class:"button is-primary" %>
+              <%= link_to "Account settings", edit_user_registration_path, class:"button is-primary" %>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"button is-light" %>
             <% else %>
               <%= link_to "Log in", new_user_session_path, class:"button is-primary" %>

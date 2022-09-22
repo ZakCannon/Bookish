@@ -37,15 +37,10 @@
       </div>
     </div>
   </div>
-
-
 </div>
-
-
 
 <div class="box">
   <h2 class="subtitle">Copy information</h2>
-
   <%(0..(@copies.size-1)).each do |i|%>
     <li>
       <%if @copies[i] == nil || @copies[i].borrower.length == 0%>
@@ -57,10 +52,15 @@
   <% end %>
 </div>
 
+<!--<div class="box">-->
+<!--  <h2 class="subtitle">Reviews</h2>-->
+<!--  Placeholder for written reviews-->
+  <%#=link_to "Leave a review", new_book_review_path %>
+<!--</div>-->
 
 <h2 class="subtitle">Actions</h2>
 
-<button class="button"><%= link_to "Edit this book's info", edit_book_path(@book) %></button>
-<button class="button"><%= link_to "View detailed copy info of this book", "#{@book_id}/copy_edit" %></button>
-<button class="button"><%= link_to "Back to books", books_path %></button>
+<button class="button"><%= link_to "Edit this book's info", edit_book_url %></button>
+<button class="button"><%= link_to "View detailed copy info of this book", book_copies_url(@book) %></button>
+<button class="button"><%= link_to "Back to books", root_url %></button>
 <%= button_to "Destroy this book", @book, method: :delete, class:"button is-danger mt-3" %>
