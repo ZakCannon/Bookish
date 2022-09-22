@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'books/:id/copy_edit', to: 'books#copy_edit'
   get 'search', to: 'books#search'
   get 'search/result', to: 'books#search_result'
+  get 'stats', to: 'stats#index'
 
   root to: "books#index"
 end

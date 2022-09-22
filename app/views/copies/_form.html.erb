@@ -18,7 +18,7 @@
     </div>
     <div class="field">
       <%= form.label :due_date, class:"label" %>
-      <%= form.text_field :due_date, placeholder: "Eg. 26/09/2022, leave blank if not taken out",class:"control" %>
+      <%= form.text_field :due_date, class:"control",type:"date",min:"#{Date.today()}" %>
     </div>
     <div class="control">
       <%= form.submit class:"button is-link"%>
