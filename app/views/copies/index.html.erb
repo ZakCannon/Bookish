@@ -11,8 +11,8 @@
   </tr>
   <%(0..(@copies.size-1)).each do |i|%>
     <%if shown_available == false%>
-      <%puts "here! #{@count_available.class != NilClass}"%>
-      <%if @count_available.class != NilClass%>
+      <%puts "here! #{@count_available}"%>
+      <%if @count_available != 0%>
       <tr>
         <td>
         <button class="button"><%= link_to "Take out", edit_book_copy_path(@book, @copies[i])%></button>

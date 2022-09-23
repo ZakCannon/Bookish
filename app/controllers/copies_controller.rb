@@ -7,6 +7,14 @@ class CopiesController < ApplicationController
   def index
     copies = @book.copies
     @copies = copies.sort_by {|copy| copy.borrower}
+
+    @count_available = 0
+
+    (0..(@copies.size-1)).each do |i|
+      if @copies[i] == nil || @copies[i].borrower.length == 0
+        @count_available +=1
+      end
+    end
   end
 
   # GET /copies/1 or /copies/1.json
