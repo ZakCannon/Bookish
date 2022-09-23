@@ -52,23 +52,25 @@ class CopiesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to book_copy_path(@book), notice: "Copy was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
   def get_book
-    @book = Book.find(params[:book_id])
+    begin
+      @book = Book.find(params[:book_id])
+    rescue ActiveRecord::RecordNotFound
+      @book = Book.find(params[:copy][:book_id])
+    end
   end
 
     def set_copy
-      puts "params at get copy stage #{params}"
       @copy = @book.copies.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def copy_params
-      params.fetch(:copy, {}).permit(:borrower, :due_date, :book_id)
+      params.fetch(:copy, {}).permit(:borrower, :due_date, :book_id, :id)
     end
 end

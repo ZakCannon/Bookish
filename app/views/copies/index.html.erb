@@ -11,7 +11,8 @@
   </tr>
   <%(0..(@copies.size-1)).each do |i|%>
     <%if shown_available == false%>
-      <%if @count_available != "no"%>
+      <%puts "here! #{@count_available.class != NilClass}"%>
+      <%if @count_available.class != NilClass%>
       <tr>
         <td>
         <button class="button"><%= link_to "Take out", edit_book_copy_path(@book, @copies[i])%></button>
@@ -20,9 +21,10 @@
         <td></td>
         </td>
       </tr>
-        <%else %>
+      <%else %>
       <tr>
         <td>No Copies of this book available</td>
+        <%shown_available = true %>
         <td></td>
         <td></td>
       </tr>
@@ -30,7 +32,7 @@
     <%else %>
       <%unless @copies[i].borrower.length==0%>
         <tr>
-          <td><button class="button is-small"><%= link_to "Return, or renew", edit_book_copy_path(@book, @copies[i])%></button></td>
+          <td><button class="button is-small"><%= link_to "Return or renew", edit_book_copy_path(@book, @copies[i])%></button></td>
           <td><%=@copies[i].borrower%></td>
           <td><%=@copies[i].due_date %></td>
         </tr>
